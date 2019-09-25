@@ -27,6 +27,24 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.scss$/,
+        /**
+         * css-loader会分析css文件的彼此依赖
+         * style-loader会根据css-loader分析生成的文件，挂在到html的style标签中
+         */
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              // scss中引入的scss文件引入之前，走下面2个loader
+              importLoaders: 2,
+            }
+          }
+          'sass-loader',
+          'postcss-loader'],
+      },
     ],
   },
 };

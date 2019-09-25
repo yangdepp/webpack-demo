@@ -1,8 +1,10 @@
 const add = require('./add');
 add(3, 10);
 
-const test = require('./test.jpg');
+import testImg from './test.jpg';
+import './index.scss';
 const img = new Image();
-img.src = test;
+img.src = testImg;
+img.classList.add('img-test');
 const root = document.getElementById('root');
 root.append(img);
