@@ -1,10 +1,12 @@
-const add = require('./add');
-add(3, 10);
-
 import testImg from './test.jpg';
-import './index.scss';
+import style from './index.scss';
+import createTest from './createTest';
+
+createTest();
+
 const img = new Image();
 img.src = testImg;
-img.classList.add('img-test');
+img.classList.add(style['img-test']);
+
 const root = document.getElementById('root');
 root.append(img);

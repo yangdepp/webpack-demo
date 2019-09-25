@@ -40,10 +40,13 @@ module.exports = {
             options: {
               // scss中引入的scss文件引入之前，走下面2个loader
               importLoaders: 2,
-            }
-          }
+              // 开启css modules
+              modules: true,
+            },
+          },
           'sass-loader',
-          'postcss-loader'],
+          'postcss-loader',
+        ],
       },
     ],
   },
