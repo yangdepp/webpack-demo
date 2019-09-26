@@ -1,14 +1,4 @@
-import _ from 'lodash';
-console.log(_.join('a', 'b', 'c'));
+import './style.css';
+import './index.scss';
 
-function getComponent() {
-  return import(/* webpackChunkName:"lodash" */ 'lodash').then(({ default: _ }) => {
-    var element = document.createElement('div');
-    element.innerHTML = _.join(['dell', 'desktop'], '-');
-    return element;
-  });
-}
-
-getComponent().then((element) => {
-  document.body.appendChild(element);
-});
+console.log('hello world');

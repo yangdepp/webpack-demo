@@ -1,5 +1,6 @@
 const merge = require('webpack-merge');
 const commonConfig = require('./webpack.common.js');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const prodConfig = {
   mode: 'production',
@@ -11,5 +12,8 @@ const prodConfig = {
    * production 使用 cheap-module-source-map
    */
   devtool: 'cheap-module-source-map',
+  optimization: {
+    minimizer: [new OptimizeCSSAssetsPlugin({})],
+  },
 };
 module.exports = merge(prodConfig, commonConfig);

@@ -23,9 +23,5 @@ const devConfig = {
   },
 
   plugins: [new webpack.HotModuleReplacementPlugin()],
-  // 开发环境时，配置treeshaking,production时可以删掉
-  optimization: {
-    usedExports: true,
-  },
 };
 module.exports = merge(commonConfig, devConfig);
