@@ -1,28 +1,10 @@
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
-  mode: 'development',
-  /**
-   * 设置源码和打包后文件的映射关系,
-   * cheap-inline-source-map只精确到行,不包括第三方
-   * cheap-module-inline-source-map包含第三方
-   * 最佳实践：development 使用 cheap-module-eval-source-map
-   * production 使用 cheap-module-source-map
-   */
-  devtool: 'cheap-module-eval-source-map',
   entry: {
     main: './src/index.js',
-  },
-  devServer: {
-    contentBase: './dist',
-    open: true,
-    port: 1024,
-    // hot module replacement
-    hot: true,
-    hotOnly: true,
   },
   output: {
     // filename: 'bundle.js',
@@ -95,10 +77,5 @@ module.exports = {
       template: 'src/index.html',
     }),
     new CleanWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
   ],
-  // 开发环境时，配置treeshaking,production时可以删掉
-  optimization: {
-    usedExports: true,
-  },
 };
