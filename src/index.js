@@ -1,3 +1,1 @@
-const root = document.getElementById('root');
-
-root.innerHTML = ('<div class="test">abc</div>')
+console.log('hello world');

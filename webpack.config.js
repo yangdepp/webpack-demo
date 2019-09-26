@@ -1,13 +1,26 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
+  /**
+   * 设置源码和打包后文件的映射关系,
+   * cheap-inline-source-map只精确到行,不包括第三方
+   * cheap-module-inline-source-map包含第三方
+   * 最佳实践：development 使用 cheap-module-eval-source-map
+   * production 使用 cheap-module-source-map
+   */
+  devtool: 'cheap-module-eval-source-map',
   entry: {
     main: './src/index.js',
   },
   output: {
-    filename: 'bundle.js',
+    // filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
+    // 设置打包后js文件引入的前缀
+    // publicPath: 'http://cdn.com.cn',
   },
   module: {
     rules: [
@@ -28,6 +41,12 @@ module.exports = {
         },
       },
       {
+        test: /\.(eot|ttf|svg|woff)$/,
+        use: {
+          loader: 'file-loader',
+        },
+      },
+      {
         test: /\.scss$/,
         /**
          * css-loader会分析css文件的彼此依赖
@@ -41,7 +60,7 @@ module.exports = {
               // scss中引入的scss文件引入之前，走下面2个loader
               importLoaders: 2,
               // 开启css modules
-              modules: true,
+              // modules: true,
             },
           },
           'sass-loader',
@@ -50,4 +69,10 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+    }),
+    new CleanWebpackPlugin(),
+  ],
 };
