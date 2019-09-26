@@ -1,11 +1,11 @@
-import './style.css';
+// import "@babel/polyfill";
 
-var btn = document.createElement('button');
-btn.innerHTML = '新增';
-document.body.appendChild(btn);
+import React, { Component } from 'react';
+import ReactDom from 'react-dom';
 
-btn.onclick = function() {
-  var div = document.createElement('div');
-  div.innerHTML = 'item';
-  document.body.appendChild(div);
-};
+class App extends Component {
+  render() {
+    return <div>Hello World</div>;
+  }
+}
+ReactDom.render(<App />, document.getElementById('root'));

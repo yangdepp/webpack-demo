@@ -80,6 +80,14 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
+      // 配置babel
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        // options配置内容可以转移至.babelrc中
+        options: {},
+      },
     ],
   },
   plugins: [
