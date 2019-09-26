@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   mode: 'development',
@@ -14,6 +15,14 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: {
     main: './src/index.js',
+  },
+  devServer: {
+    contentBase: './dist',
+    open: true,
+    port: 1024,
+    // hot module replacement
+    hot: true,
+    hotOnly: true,
   },
   output: {
     // filename: 'bundle.js',
@@ -67,6 +76,10 @@ module.exports = {
           'postcss-loader',
         ],
       },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+      },
     ],
   },
   plugins: [
@@ -74,5 +87,6 @@ module.exports = {
       template: 'src/index.html',
     }),
     new CleanWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
 };
