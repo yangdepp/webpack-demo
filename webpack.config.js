@@ -97,4 +97,8 @@ module.exports = {
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
   ],
+  // 开发环境时，配置treeshaking,production时可以删掉
+  optimization: {
+    usedExports: true,
+  },
 };

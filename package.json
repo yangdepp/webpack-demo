@@ -1,5 +1,8 @@
 {
   "name": "webpack-project",
+  "sideEffects": [
+    "*.css"
+  ],
   "version": "1.0.0",
   "description": "",
   "private": true,
